@@ -109,7 +109,7 @@ namespace Monopoly
                         pallets = pallets.Where(f => f.ExpirationDate.Month >= DateOnly.FromDateTime(DateTime.Today.AddMonths(2)).Month || f.ExpirationDate.Year > DateOnly.FromDateTime(DateTime.Today).Year).OrderBy(f => f.Weight).ToList();
                     else
                     {
-                        pallets = pallets.Where(f => f.ExpirationDate.Month >= DateOnly.FromDateTime(DateTime.Today.AddMonths(2)).Month).OrderByDescending(f => f.Weight).ToList();
+                        pallets = pallets.Where(f => f.ExpirationDate.Month >= DateOnly.FromDateTime(DateTime.Today.AddMonths(2)).Month || f.ExpirationDate.Year > DateOnly.FromDateTime(DateTime.Today).Year).OrderByDescending(f => f.Weight).ToList();
                     }
                     break;
                 case 3:
