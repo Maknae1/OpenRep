@@ -1,0 +1,142 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		FontFamily="Comic Sans MS"
+		Icon=".\sources\icon.png"
+        x:Class="Monopoly.MainWindow"
+        Title="Monopoly">
+	<Window.Styles>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="#0c6297"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+	</Window.Styles>
+	<Grid RowDefinitions="*,3*,3*"
+		  ColumnDefinitions="*,*,*"
+		  Margin="10">
+		<Image Source=".\sources\logo.png"/>
+		<TextBlock Text="Тестовое задание (Просмотр списка паллет)"
+				   Grid.ColumnSpan="2"
+				   Grid.Column="1"
+				   HorizontalAlignment="Left"
+				   VerticalAlignment="Center"
+				   FontSize="20"
+				   FontWeight="DemiBold"/>
+		<StackPanel Grid.ColumnSpan="3"
+					Grid.RowSpan="2"
+					Grid.Row="1"
+					Spacing="10">
+			
+			<StackPanel Orientation="Horizontal"
+						Spacing="10">
+				<TextBlock Text="Фильтрация по сроку годности"/>
+				<ComboBox x:Name="ExpiretionComboBox"
+						  SelectedIndex="0">
+					<ComboBoxItem Content="Срок годности истекает в этом месяце"/>
+					<ComboBoxItem Content="Срок годности истекает в следующем месяце"/>
+					<ComboBoxItem Content="Срок годности истекает не скоро"/>
+					<ComboBoxItem Content="Все"/>
+				</ComboBox>
+				<TextBlock Text="Сортировка по весу"/>
+				<ComboBox x:Name="WeightComboBox"
+						  SelectedIndex="0">
+					<ComboBoxItem Content="По возрастанию"/>
+					<ComboBoxItem Content="По убыванию"/>
+				</ComboBox>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal"
+						Spacing="10"
+						HorizontalAlignment="Stretch">
+				<Separator Width="100"/>
+
+				<StackPanel Spacing="10">
+					<TextBlock Text="Список паллет: "
+							   x:Name="palleteTextblock"/>
+					<Border BorderBrush="Black"
+						BorderThickness="2"
+							x:Name="palleteBorder">
+						<ScrollViewer Height="300">
+							<ListBox x:Name="palleteListBox"
+									 Background="Transparent">
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<StackPanel Orientation="Horizontal">
+											<StackPanel Width="400">
+												<TextBlock Text="{Binding PalleteID}"
+														   FontWeight="DemiBold"
+														   TextWrapping="Wrap"/>
+												<TextBlock Text="{Binding Width}"
+														   TextWrapping="Wrap"/>
+												<TextBlock Text="{Binding Height}"
+														   TextWrapping="Wrap"/>
+												<TextBlock Text="{Binding Depth}"
+														   TextWrapping="Wrap"/>
+												<TextBlock Text="{Binding Weight}"
+														   TextWrapping="Wrap"/>
+												<TextBlock Text="{Binding Volume}"
+														   TextWrapping="Wrap"/>
+												<TextBlock Text="{Binding ExpirationDate}"
+														   TextWrapping="Wrap"/>
+											</StackPanel>
+
+											<Button Content="Состав"
+													Tag="{Binding ID}"
+													Click="ShowItemsButtonClick"/>
+										</StackPanel>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</ScrollViewer>
+					</Border>
+				</StackPanel>
+
+				<Separator Width="100"/>
+				<StackPanel Spacing="10">
+					<TextBlock Text="содержание паллеты:"
+							   HorizontalAlignment="Center"
+							   x:Name="emptyListTextBox"/>
+					<Border BorderBrush="Black"
+							BorderThickness="2"
+							x:Name="boxesBorder">
+						<ScrollViewer Height="300">
+							<ListBox x:Name="boxesListBox"
+									 Background="Transparent">
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<StackPanel Width="300">
+											<TextBlock Text="{Binding ID}"
+													   TextWrapping="Wrap"
+													   FontWeight="DemiBold"/>
+											<TextBlock Text="{Binding Width}"
+													   TextWrapping="Wrap"/>
+											<TextBlock Text="{Binding Height}"
+													   TextWrapping="Wrap"/>
+											<TextBlock Text="{Binding Depth}"
+													   TextWrapping="Wrap"/>
+											<TextBlock Text="{Binding Weight}"
+													   TextWrapping="Wrap"/>
+											<TextBlock Text="{Binding Volume}"
+													   TextWrapping="Wrap"/>
+											<TextBlock Text="{Binding ManufactureDate}"
+													   TextWrapping="Wrap"/>
+											<TextBlock Text="{Binding ExpirationDate}"
+													   TextWrapping="Wrap"/>
+										</StackPanel>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</ScrollViewer>
+					</Border>
+				</StackPanel>
+
+			</StackPanel>
+			<StackPanel Spacing="10">
+				<Button x:Name="threePalletsButton"
+						Content="3 паллеты с наибольшим сроком хранения"/>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</Window>
